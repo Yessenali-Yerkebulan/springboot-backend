@@ -46,4 +46,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return existingEmployee;
 
     }
+
+    @Override
+    public void deleteEmployee(long id) {
+        employeeRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Employee", "Id", id));
+        employeeRepository.deleteById(id);
+    }
 }
